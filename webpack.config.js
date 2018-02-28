@@ -1,7 +1,8 @@
 const path = require('path')
 
 module.exports = {
-  entry: './assets/js/index.js',
+  entry: './components/index.js',
+  mode: 'development',
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
@@ -17,11 +18,10 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader',
-          'sass-loader'
+          'css-loader'
         ]
       }
     ]
