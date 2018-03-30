@@ -7,7 +7,14 @@ import store from './store'
 
 ReactDOM.render(
   <Provider store={store}>
-    <h1>Hello</h1>
+    <div id='demo' className='fill-xy bg-purple white column center-xy'>
+      <div>
+        <div>Actions&</div>
+        <div>Reducers&</div>
+        <div>Middleware&</div>
+        <div>Redux.</div>
+      </div>
+    </div>
   </Provider>,
   document.getElementById('app')
 )
