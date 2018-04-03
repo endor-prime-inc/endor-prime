@@ -4,7 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const db = require('./db')
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 // Logging middleware
 app.use(morgan('dev'))
@@ -37,5 +37,8 @@ app.use((err, req, res, next) => {
   res.send(err.message || 'Internal server error')
 })
 
-db.sync().then(() => console.log('The database is synced'))
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+db.sync()
+  .then(() => {
+    console.log('The database is synced')
+    app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+  })
