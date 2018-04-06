@@ -8,11 +8,11 @@ import store from './store'
 
 ReactDOM.render(
   <Provider store={store}>
-    <div id='demo' className='fill-xy bg-purple white column center-xy'>
+    <div id='demo' className='fill-xy bg-yellow black column center-xy'>
       <div>
-        <div>Actions&</div>
-        <div>Reducers&</div>
-        <div>Middleware&</div>
+        <div>Express&</div>
+        <div>Sequelize&</div>
+        <div>React&</div>
         <div>Redux.</div>
       </div>
     </div>
