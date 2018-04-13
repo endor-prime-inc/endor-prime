@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  entry: './client/index.js',
+  entry: ['babel-polyfill', './client/index.js'],
   mode: 'development',
   output: {
     path: path.join(__dirname, 'public'),
