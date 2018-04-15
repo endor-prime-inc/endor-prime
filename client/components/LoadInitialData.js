@@ -8,18 +8,27 @@ class LoadInitialData extends Component {
   constructor () {
     super()
     this.state = {
-      loaded: false
+      loaded: false,
+      error: false
     }
   }
 
   async componentDidMount () {
-    await this.props.load()
-    this.setState({loaded: true})
+    try {
+      await this.props.load()
+      this.setState({loaded: true})
+    } catch (error) {
+      this.setState({error: true})
+    }
   }
 
   render () {
-    const {loaded} = this.state
-    return loaded ? <Main /> : <div>Loading...</div>
+    const {loaded, error} = this.state
+    return loaded
+      ? <Main />
+      : error
+        ? <div>We are experiencing some technical difficulties...</div>
+        : <div>Loading...</div>
   }
 }
 
