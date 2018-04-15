@@ -1,6 +1,6 @@
 # Grace Shopper
 
-*A shop that's closed is safest; but that's not what shops are for.*
+*A shop that's closed is safe; but that's not what shops are for.*
 
 ## Setup
 
