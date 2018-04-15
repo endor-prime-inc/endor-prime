@@ -7,12 +7,12 @@ import {Router} from 'react-router-dom'
 import {Provider} from 'react-redux'
 import store from './store'
 import history from './history'
-import Main from './components'
+import {App} from './components'
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Main />
+      <App />
     </Router>
   </Provider>,
   document.getElementById('app')

@@ -2,7 +2,7 @@
 
 # Hello, welcome to a bash script.
 
-# This bash script deploys your boilermaker application.
+# This bash script deploys your application.
 
 # On the terminal you run individual
 # bash commands, and this file strings a bunch of commands together.
