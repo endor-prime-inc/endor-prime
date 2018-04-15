@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {AuthLink} from './auth'
+import {AuthLink, Logout} from './auth'
 
 const Navbar = () => (
   <nav className='row center-y'>
@@ -8,6 +8,7 @@ const Navbar = () => (
     <Link to='/login'>Login</Link>
     <Link to='/signup'>Signup</Link>
     <AuthLink to='/home'>Home</AuthLink>
+    <AuthLink to='/'><Logout /></AuthLink>
   </nav>
 )
 

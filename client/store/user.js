@@ -41,7 +41,6 @@ export const logout = () =>
     axios.delete('/auth')
       .then(() => {
         dispatch(removeUser())
-        history.push('/login')
       })
       .catch(err => console.log(err))
 

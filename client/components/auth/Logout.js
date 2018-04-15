@@ -1,0 +1,15 @@
+import React from 'react'
+import {connect} from 'react-redux'
+import {logout} from '../../store'
+
+const Logout = ({logout}) => (
+  <span onClick={logout}>Logout</span>
+)
+
+const mapDispatch = (dispatch) => {
+  return {
+    logout: () => dispatch(logout())
+  }
+}
+
+export default connect(null, mapDispatch)(Logout)

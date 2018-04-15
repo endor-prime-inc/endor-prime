@@ -26,6 +26,10 @@ a:hover {
   border-bottom: 1px solid;
 }
 
+nav a:first-child:hover {
+  border: none;
+}
+
 #logo {
   height: 40px;
   width: 40px;
