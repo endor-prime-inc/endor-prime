@@ -2,6 +2,14 @@ const {db} = require('./db')
 const app = require('./app')
 const PORT = process.env.DATABASE_URL || 3000
 
+if (process.env.NODE_ENV !== 'production') {
+  try {
+    require('./secrets')
+  } catch (err) {
+    console.log('No secrets file found - make sure to add one!')
+  }
+}
+
 db.sync()
   .then(() => {
     console.log('The database is synced')
