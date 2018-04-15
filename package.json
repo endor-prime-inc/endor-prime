@@ -1,8 +1,11 @@
 {
-  "name": "simple-react",
+  "name": "grace-shopper-starter",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">= 7.0.0"
+  },
   "scripts": {
     "deploy": "sh scripts/deploy.sh",
     "seed": "node scripts/seed.js",
