@@ -1,10 +1,10 @@
 {
-  "name": "grace-shopper-starter",
-  "version": "1.0.0",
+  "name": "grace-shopper",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": ">= 7.0.0"
+    "node": ">= 8.11.1"
   },
   "scripts": {
     "deploy": "sh scripts/deploy.sh",
