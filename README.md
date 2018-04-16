@@ -18,8 +18,8 @@ git merge boilerplate/master
 Why did we do that? Because every once in a while, `grace-shopper-starter` may be updated with additional features or bug fixes, and you can easily get those changes from now on by entering:
 
 ```
-git fetch grace-shopper-starter
-git merge grace-shopper-starter/master
+git fetch boilerplate
+git merge boilerplate/master
 ```
 
 ## Customize
