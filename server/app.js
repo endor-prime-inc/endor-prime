@@ -15,13 +15,6 @@ app.get('/*', (req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 })
 
-// Handle 404s
-app.use((req, res, next) => {
-  const err = new Error('Not Found')
-  err.status = 404
-  next(err)
-})
-
 // Error handling endware
 app.use((err, req, res, next) => {
   res.status(err.status || 500)

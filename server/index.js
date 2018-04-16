@@ -1,6 +1,6 @@
 const {db} = require('./db')
 const app = require('./app')
-const PORT = process.env.DATABASE_URL || 3000
+const PORT = process.env.DATABASE_URL || 8080
 
 if (process.env.NODE_ENV !== 'production') {
   try {
