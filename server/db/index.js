@@ -4,17 +4,22 @@ const Product = require('./product');
 const Category = require('./category');
 const Review = require('./review');
 const Order = require('./order');
+const OrderProducts = require('./order-products');
 
-Product.belongsToMany(Category, { through: 'category-product' });
-Category.belongsToMany(Product, { through: 'category-product' });
+Product.belongsToMany(Category, { through: 'category-products' });
+Category.belongsToMany(Product, { through: 'category-products' });
 
-Order.belongsToMany(User, { through: 'order-user' });
-User.belongsToMany(Order, { through: 'order-user' });
+Order.belongsTo(User);
+User.hasMany(Order);
 
 Review.belongsTo(Product);
-Review.belongsTo(User);
 Product.hasMany(Review);
+
+Review.belongsTo(User);
 User.hasMany(Review);
+
+Product.belongsToMany(Order, { through: OrderProducts });
+Order.belongsToMany(Product, { through: OrderProducts });
 
 module.exports = {
   db,
@@ -22,5 +27,6 @@ module.exports = {
   Product,
   Category,
   Review,
-  Order
+  Order,
+  OrderProducts
 };
