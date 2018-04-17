@@ -18,5 +18,9 @@ User.hasMany(Review);
 
 module.exports = {
   db,
-  User
+  User,
+  Product,
+  Category,
+  Review,
+  Order
 };
