@@ -9,9 +9,6 @@ const OrderProducts = require('./order-products');
 Product.belongsToMany(Category, { through: 'category-products' });
 Category.belongsToMany(Product, { through: 'category-products' });
 
-Order.belongsTo(User);
-User.hasMany(Order);
-
 Review.belongsTo(Product);
 Product.hasMany(Review);
 

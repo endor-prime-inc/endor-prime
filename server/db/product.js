@@ -36,9 +36,9 @@ const Product = db.define('product', {
   pictures: {
     type: Sequelize.ARRAY(Sequelize.TEXT),
     allowNull: false,
+    defaultValue: ['/images/defaultImage.jpg'],
     validate: {
-      notEmpty: true,
-      defaultValue: ['/images/defaultImage.jpg']
+      notEmpty: true
     }
   }
 });
