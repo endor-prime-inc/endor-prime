@@ -1,11 +1,9 @@
-const db = require('./database');
-const User = require('./user');
-const Category = require('./category');
+const db = require('./database')
+const User = require('./user')
 
 // associations go here!
 
 module.exports = {
   db,
-  User,
-  Category
-};
+  User
+}
