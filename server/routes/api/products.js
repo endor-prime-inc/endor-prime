@@ -29,7 +29,7 @@ router.get('/:id', async (request, response, next) => {
       const error = new Error(
         `Could not find product with id: ${request.params.id}`
       );
-      error.status = 400;
+      error.status = 404;
       next(error);
     }
   } catch (err) {
