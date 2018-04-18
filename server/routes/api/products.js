@@ -41,10 +41,16 @@ router.get('/:id', async (request, response, next) => {
 
 router.put('/:id', async (request, response, next) => {
   try {
-    const product = await Product.update(request.body, {
+    const updated = await Product.update(request.body, {
       where: { id: request.params.id }
     });
-    response.status(200).json(product);
+    if (updated[0]) {
+      response.status(200).json(updated[1][0]);
+    } else {
+      const error = new Error(`No category with the ID ${request.params.id}`);
+      error.status = 400;
+      next(error);
+    }
   } catch (error) {
     next(error);
   }
