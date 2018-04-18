@@ -6,8 +6,8 @@ router.get('/', async (request, response, next) => {
   try {
     const products = await Product.findAll();
     response.json(products);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -15,8 +15,8 @@ router.post('/', async (request, response, next) => {
   try {
     const product = await Product.create(request.body);
     response.json(product);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -32,8 +32,8 @@ router.get('/:id', async (request, response, next) => {
       error.status = 404;
       next(error);
     }
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -43,8 +43,8 @@ router.put('/:id', async (request, response, next) => {
       where: { id: request.params.id }
     });
     response.json(product);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -60,7 +60,7 @@ router.delete('/:id', async (request, response, next) => {
       error.status = 400;
       next(error);
     }
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
