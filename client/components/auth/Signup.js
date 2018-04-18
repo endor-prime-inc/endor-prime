@@ -1,6 +1,6 @@
 import AuthForm from './AuthForm'
 import {connect} from 'react-redux'
-import {auth} from '../../store'
+import {auth} from '../../store/user'
 
 const mapState = (state) => {
   return {
