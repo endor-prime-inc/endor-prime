@@ -5,9 +5,16 @@ module.exports = router;
 router.get('/', async (request, response, next) => {
   try {
     const reviews = await Review.findAll({ include: [User, Product] });
-    reviews.length
-      ? response.status(200).json(reviews)
-      : response.status(404).json('No reviews found');
+    response.status(200).json(reviews);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post('/', async (request, response, next) => {
+  try {
+    const review = await Review.create(request.body);
+    response.status(201).json(review);
   } catch (error) {
     next(error);
   }
@@ -17,20 +24,13 @@ router.get('/:id', async (request, response, next) => {
   try {
     const { id } = request.params;
     const review = await Review.findById(id, { include: [User, Product] });
-    review
-      ? response.status(200).json(review)
-      : response.status(404).json('Review not found');
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.post('/', async (request, response, next) => {
-  try {
-    const review = await Review.create(request.body);
-    review
-      ? response.status(201).json(review)
-      : response.status(400).json('Bad request.');
+    if (review) {
+      response.status(200).json(review);
+    } else {
+      const error = new Error('Review not found');
+      error.status = 404;
+      next(error);
+    }
   } catch (error) {
     next(error);
   }
@@ -44,7 +44,9 @@ router.put('/:id', async (request, response, next) => {
       review = await review.update(request.body);
       response.status(200).json(review);
     } else {
-      response.status(400).json('Bad request');
+      const error = new Error('Bad request');
+      error.status = 400;
+      next(error);
     }
   } catch (error) {
     next(error);
@@ -55,9 +57,13 @@ router.delete('/:id', async (request, response, next) => {
   try {
     const { id } = request.params;
     const review = await Review.findById(id);
-    review
-      ? response.status(200).json(await review.destroy())
-      : response.status(400).json('Bad request');
+    if (review) {
+      response.status(200).json(await review.destroy());
+    } else {
+      const error = new Error('Bad request');
+      error.status = 400;
+      next(error);
+    }
   } catch (error) {
     next(error);
   }
