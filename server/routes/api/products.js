@@ -27,7 +27,7 @@ router.get('/:id', async (request, response, next) => {
       response.json(product);
     } else {
       const error = new Error(
-        `Could not find product with id: ${request.params.id}`
+        `Could not find product with ID: ${request.params.id}`
       );
       error.status = 404;
       next(error);
@@ -50,7 +50,7 @@ router.put('/:id', async (request, response, next) => {
 
 router.delete('/:id', async (request, response, next) => {
   try {
-    const deleted = await Product.desroy({ where: { id: request.params.id } });
+    const deleted = await Product.destroy({ where: { id: request.params.id } });
     if (deleted) {
       response.sendStatus(202);
     } else {
