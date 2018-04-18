@@ -4,7 +4,7 @@ module.exports = router;
 
 router.get('/', async (request, response, next) => {
   try {
-    const products = await Product.findAll({ include: [{ model: Category }] });
+    const products = await Product.findAll({ include: [Category] });
     response.json(products);
   } catch (error) {
     next(error);
@@ -14,7 +14,7 @@ router.get('/', async (request, response, next) => {
 router.post('/', async (request, response, next) => {
   try {
     const product = await Product.create(request.body);
-    response.json(product);
+    response.status(201).json(product);
   } catch (error) {
     next(error);
   }
@@ -23,7 +23,7 @@ router.post('/', async (request, response, next) => {
 router.get('/:id', async (request, response, next) => {
   try {
     const product = await Product.findById(request.params.id, {
-      include: [{ model: Category }]
+      include: [Category]
     });
     if (product) {
       response.json(product);
@@ -44,7 +44,7 @@ router.put('/:id', async (request, response, next) => {
     const product = await Product.update(request.body, {
       where: { id: request.params.id }
     });
-    response.json(product);
+    response.status(200).json(product);
   } catch (error) {
     next(error);
   }
@@ -54,7 +54,7 @@ router.delete('/:id', async (request, response, next) => {
   try {
     const deleted = await Product.destroy({ where: { id: request.params.id } });
     if (deleted) {
-      response.sendStatus(202);
+      response.sendStatus(200);
     } else {
       const error = new Error(
         `Could not delete product with ID: ${request.params.id}`
