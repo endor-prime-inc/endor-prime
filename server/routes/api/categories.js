@@ -4,13 +4,7 @@ const router = require('express').Router();
 router.get('/', async (request, response, next) => {
   try {
     const categories = await Category.findAll();
-    if (categories.length) {
-      response.json(categories);
-    } else {
-      const error = new Error('No categories found');
-      error.status = 404;
-      next(error);
-    }
+    response.json(categories);
   } catch (error) {
     next(error);
   }
@@ -50,7 +44,7 @@ router.put('/:id', async (request, response, next) => {
       where: { id }
     });
     if (updated[0]) {
-      response.status(201).json(updated[1][0]);
+      response.status(200).json(updated[1][0]);
     } else {
       const error = new Error(`No category with the ID ${id}`);
       error.status = 400;
