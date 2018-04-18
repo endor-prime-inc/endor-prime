@@ -23,7 +23,15 @@ router.post('/', async (request, response, next) => {
 router.get('/:id', async (request, response, next) => {
   try {
     const product = await Product.findById(request.params.id);
-    response.json(product);
+    if (product) {
+      response.json(product);
+    } else {
+      const error = new Error(
+        `Could not fidn product with id: ${request.params.id}`
+      );
+      error.status = 400;
+      next(error);
+    }
   } catch (err) {
     next(err);
   }
@@ -46,7 +54,9 @@ router.delete('/:id', async (request, response, next) => {
     if (deleted) {
       response.sendStatus(202);
     } else {
-      const error = new Error('Invalid request');
+      const error = new Error(
+        `Could not delete product with ID: ${request.params.id}`
+      );
       error.status = 400;
       next(error);
     }
