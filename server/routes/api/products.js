@@ -27,7 +27,7 @@ router.get('/:id', async (request, response, next) => {
       response.json(product);
     } else {
       const error = new Error(
-        `Could not fidn product with id: ${request.params.id}`
+        `Could not find product with id: ${request.params.id}`
       );
       error.status = 400;
       next(error);
