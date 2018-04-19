@@ -30,6 +30,14 @@ nav a:first-child:hover {
   border: none;
 }
 
+.product-thumbnail {
+  width: 6em;
+}
+
+#selected-image {
+  width: 100%;
+}
+
 #logo {
   height: 40px;
   width: 40px;
