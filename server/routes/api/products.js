@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Category } = require('../../db');
+const { Product, Category, Review } = require('../../db');
 module.exports = router;
 
 router.get('/', async (request, response, next) => {
@@ -23,7 +23,7 @@ router.post('/', async (request, response, next) => {
 router.get('/:id', async (request, response, next) => {
   try {
     const product = await Product.findById(request.params.id, {
-      include: [Category]
+      include: [Category, Review]
     });
     if (product) {
       response.json(product);
