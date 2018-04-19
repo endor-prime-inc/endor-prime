@@ -1,14 +1,14 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {me} from '../store'
+import {me} from '../store/user'
 import Main from './Main'
 
 // LoadInitialData: this sits on top of our `Main` component and fetches
 // the initial data that we need to render the app, regardless of where
 // the visitor lands. As of right now, we try to fetch the current user
 // from the session.
-class LoadInitialData extends Component {
+export class LoadInitialData extends Component {
   constructor () {
     super()
     this.state = {
