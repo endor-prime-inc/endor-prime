@@ -6,7 +6,7 @@ import Home from './Home'
 import NoMatch from './NoMatch'
 
 const Routes = () => (
-  <div className='fill-xy center-xy column'>
+  <div>
     <Switch>
       <Route exact path='/' component={Welcome} />
       <Route path='/login' component={Login} />
