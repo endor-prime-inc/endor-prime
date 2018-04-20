@@ -20,8 +20,6 @@ router.get('/', async (request, response, next) => {
       ...reviewAggregator(instance),
       reviews: undefined
     }));
-
-    console.log(json);
     response.json(json);
   } catch (error) {
     next(error);
