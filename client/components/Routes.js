@@ -6,9 +6,11 @@ import Account from './Account';
 import NoMatch from './NoMatch';
 import Products from './Products';
 import ProductView from './ProductView';
+import StoreToolbar from './StoreToolbar';
 
 const Routes = () => (
   <div>
+    <StoreToolbar />
     <Switch>
       <Route exact path="/" component={Welcome} />
       <Route path="/login" component={Login} />

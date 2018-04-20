@@ -5,8 +5,10 @@ import axios from 'axios';
 import history from '../history';
 import user from './user';
 import products from './products';
+import categories from './categories';
+import reviews from './reviews';
 
-const reducer = combineReducers({ user, products });
+const reducer = combineReducers({ user, products, categories, reviews });
 
 const store = createStore(
   reducer,
