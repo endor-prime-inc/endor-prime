@@ -1,3 +1,8 @@
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
+
 .product-thumbnail {
   width: 6em;
 }
