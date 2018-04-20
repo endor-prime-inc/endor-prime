@@ -1,43 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AuthLink } from './auth';
+import { getProduct } from '../store/products';
 
-// Welcome: a landing page for unauthenticated users
 class ProductView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      product: {
-        id: 3,
-        name: 'Jedi Lightsaber',
-        description: 'For the good guys',
-        price: 20000,
-        quantity: 2,
-        pictures: ['/images/defaultImage.jpg'],
-        reviews: [
-          {
-            id: 3,
-            content: 'Pretty good',
-            rating: 4,
-            productId: 3,
-            userId: 2
-          },
-          { id: 9, content: 'Meh', rating: 2, productId: 3, userId: 1 }
-        ]
-      }
-      //   order: {
-      //     product: {
-      //           id: 3,
-      //           price: 20000}
-      // }
-    };
+  componentDidMount() {
+    this.props.getProduct(this.props.match.params.id);
   }
 
   render() {
-    const product = this.state.product;
-    const reviews = this.state.product.reviews;
-    return (
-      <div id="product-view" className="container-fluid">
+    const product = this.props.product;
+    console.log(this.props.getProduct);
+    return !product ? (
+      <div />
+    ) : (
+      <div id="product-view">
         <div id="product-overview" className="row">
           <div id="product-images" className="col-sm-4 col-12">
             <div className="card">
@@ -101,12 +79,13 @@ class ProductView extends Component {
           </div>
           <div id="review-list" className="col-12">
             <ul>
-              {reviews.map(review => (
-                <li key={review.id}>
-                  <div className="individual-rating" />
-                  <p>{review.content}</p>
-                </li>
-              ))}
+              {product.reviews &&
+                product.reviews.map(review => (
+                  <li key={review.id}>
+                    <div className="individual-rating" />
+                    <p>{review.content}</p>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>
@@ -114,4 +93,12 @@ class ProductView extends Component {
     );
   }
 }
-export default ProductView;
+const mapStateToProps = (state, ownProps) => ({
+  product: state.products[ownProps.match.params.id]
+});
+
+const mapDispatchToProps = dispatch => ({
+  getProduct: id => dispatch(getProduct(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductView);
