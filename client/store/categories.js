@@ -54,7 +54,7 @@ export const putCategory = (id, formData) => async (dispatch, _, { axios }) => {
 
 export const deleteCategory = id => async (dispatch, _, { axios }) => {
   try {
-    await axios.delete(`/api/products/${id}`);
+    await axios.delete(`/api/categories/${id}`);
     dispatch(removeCategory(id));
   } catch (error) {
     console.error(error);
@@ -71,7 +71,7 @@ const removeFromCategories = (state, { id }) => {
 // Default State
 const defaultState = {};
 
-// Product Catalog Reducer
+// Category Reducer
 export default (state = defaultState, action) => {
   switch (action.type) {
     case SET_ALL_CATEGORIES:
