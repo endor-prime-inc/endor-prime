@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import querystring from 'querystring';
 import { connect } from 'react-redux';
-import { getProducts } from '../store';
+import { getProducts } from '../store/products';
 import RenderProducts from './RenderProducts';
 
 class Products extends Component {
