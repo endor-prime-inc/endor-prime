@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Product, Category, Review } = require('../../db');
+const { Product, Category, Review, User } = require('../../db');
 module.exports = router;
 
 const reviewAggregator = instance => ({
@@ -15,7 +15,9 @@ const reviewAggregator = instance => ({
 
 router.get('/', async (request, response, next) => {
   try {
-    const products = await Product.findAll({ include: [Category, Review] });
+    const products = await Product.findAll({
+      include: [Category, { model: Review, include: [User] }]
+    });
     const json = products.map(instance => ({
       ...reviewAggregator(instance),
       reviews: undefined
@@ -38,7 +40,7 @@ router.post('/', async (request, response, next) => {
 router.get('/:id', async (request, response, next) => {
   try {
     const product = await Product.findById(request.params.id, {
-      include: [Category, Review]
+      include: [Category, { model: Review, include: [User] }]
     });
     if (product) {
       response.json(reviewAggregator(product));
