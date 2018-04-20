@@ -4,9 +4,9 @@ import thunks from 'redux-thunk';
 import axios from 'axios';
 import history from '../history';
 import user from './user';
-import product from './product';
+import products from './products';
 
-const reducer = combineReducers({ user, product });
+const reducer = combineReducers({ user, products });
 
 const store = createStore(
   reducer,
@@ -15,4 +15,4 @@ const store = createStore(
 
 export default store;
 export * from './user';
-export * from './product';
+export * from './products';
