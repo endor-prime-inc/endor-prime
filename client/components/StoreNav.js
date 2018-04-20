@@ -10,7 +10,7 @@ class StoreNav extends Component {
   };
 
   render() {
-    const { categories } = this.props;
+    const { categories, potatoes } = this.props;
 
     return (
       <div className="row">
