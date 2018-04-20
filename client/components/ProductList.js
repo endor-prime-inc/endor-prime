@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductCard = props => {
+const ProductList = props => {
   const { product } = props;
   return (
     <div className="col-12 mt-3">
@@ -20,4 +20,4 @@ const ProductCard = props => {
   );
 };
 
-export default ProductCard;
+export default ProductList;
