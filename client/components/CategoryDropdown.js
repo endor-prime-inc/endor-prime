@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CategoryDropdown = props => {
   const { categories } = props;
@@ -15,16 +16,19 @@ const CategoryDropdown = props => {
         Categories
       </button>
       <div className="dropdown-menu" aria-labelledby="categoryDropdown">
+        <Link className="dropdown-item" to={`/products`}>
+          All Categories
+        </Link>
         {Object.keys(categories).map(id => {
           const name = categories[id].name;
           return (
-            <a
+            <Link
               key={id}
               className="dropdown-item"
-              href={`/products/?category=${name}`}
+              to={`/products?category=${name}`}
             >
               {name}
-            </a>
+            </Link>
           );
         })}
       </div>

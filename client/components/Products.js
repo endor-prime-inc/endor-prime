@@ -16,7 +16,7 @@ class Products extends Component {
     const filters = querystring.parse(search.slice(1));
     const allProducts = Object.keys(products).map(id => products[id]);
 
-    const filteredProducts = filters.category
+    const categoryFilteredProducts = filters.category
       ? allProducts.filter(product => {
           return product.categories.find(category => {
             return category.name === filters.category;
@@ -24,8 +24,19 @@ class Products extends Component {
         })
       : allProducts;
 
+    const searchFilteredProducts = filters.search
+      ? categoryFilteredProducts.filter(product => {
+          return product.name
+            .toLowerCase()
+            .includes(filters.search.toLowerCase());
+        })
+      : categoryFilteredProducts;
+
     return (
-      <RenderProducts filteredProducts={filteredProducts} listView={listView} />
+      <RenderProducts
+        filteredProducts={searchFilteredProducts}
+        listView={listView}
+      />
     );
   }
 }
