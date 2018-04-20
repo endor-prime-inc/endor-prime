@@ -2,10 +2,27 @@ const router = require('express').Router();
 const { Product, Category, Review } = require('../../db');
 module.exports = router;
 
+const reviewAggregator = instance => ({
+  ...instance.toJSON(),
+  ratingsCount: instance.reviews.length,
+  ratingsAvg:
+    Math.floor(
+      10 *
+        (instance.reviews.reduce((acc, review) => acc + review.rating, 0) /
+          instance.reviews.length)
+    ) / 10
+});
+
 router.get('/', async (request, response, next) => {
   try {
-    const products = await Product.findAll({ include: [Category] });
-    response.json(products);
+    const products = await Product.findAll({ include: [Category, Review] });
+    const json = products.map(instance => ({
+      ...reviewAggregator(instance),
+      reviews: undefined
+    }));
+
+    console.log(json);
+    response.json(json);
   } catch (error) {
     next(error);
   }
@@ -26,7 +43,7 @@ router.get('/:id', async (request, response, next) => {
       include: [Category, Review]
     });
     if (product) {
-      response.json(product);
+      response.json(reviewAggregator(product));
     } else {
       const error = new Error(
         `Could not find product with ID: ${request.params.id}`
