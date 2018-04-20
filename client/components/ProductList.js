@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductList = props => {
   const { product } = props;
@@ -8,12 +9,12 @@ const ProductList = props => {
         <div className="col-1">{product.id}</div>
         <div className="col-5">{product.name}</div>
         <div className="col">
-          <a
+          <Link
             href={`/products/${product.id}`}
             className="btn btn-warning float-right"
           >
             Edit
-          </a>
+          </Link>
         </div>
       </div>
     </div>
