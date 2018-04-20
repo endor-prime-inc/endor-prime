@@ -11,8 +11,8 @@
     "seed": "node scripts/seed.js",
     "start": "node server",
     "start:dev": "webpack -w & nodemon server --ignore public",
-    "test:server": "DATABASE_URL=postgres://localhost/grace-shopper-test mocha './server/**/*.test.js' --require babel-polyfill --exit",
-    "test:client": "DATABASE_URL=postgres://localhost/grace-shopper-test mocha './client/**/*.test.js' --require babel-polyfill --require babel-register --exit",
+    "test:server": "DATABASE_URL=postgres://localhost/test mocha './server/**/*.test.js' --require babel-polyfill --exit",
+    "test:client": "DATABASE_URL=postgres://localhost/test mocha './client/**/*.test.js' --require babel-polyfill --require babel-register --exit",
     "test": "npm run test:server && npm run test:client"
   },
   "author": "",
