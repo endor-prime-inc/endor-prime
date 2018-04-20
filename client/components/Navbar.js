@@ -9,7 +9,7 @@ const mapState = state => ({
 });
 
 const Navbar = props => (
-  <nav className="navbar navbar-expand-md navbar-light bg-light">
+  <nav className="navbar navbar-expand-md navbar-dark bg-dark">
     <Link to="/" className="navbar-brand">
       Endor Prime
     </Link>
