@@ -10,7 +10,7 @@ const ProductList = props => {
         <div className="col-5">{product.name}</div>
         <div className="col">
           <Link
-            href={`/products/${product.id}`}
+            to={`/products/${product.id}`}
             className="btn btn-warning float-right"
           >
             Edit
