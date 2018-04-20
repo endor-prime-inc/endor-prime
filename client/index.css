@@ -1,37 +1,12 @@
-#app {
-  height: 100%;
-  width: 100%;
+.container-fluid {
   margin: 0;
+  padding: 0;
 }
 
-nav {
-  height: 80px;
+.product-thumbnail {
+  width: 6em;
 }
 
-nav a {
-  margin: 0 1em;
-}
-
-form {
-  min-width: 50%;
-  max-width: 50%;
-}
-
-a {
-  text-decoration: none;
-  color: #753ebd;
-}
-
-a:hover {
-  border-bottom: 1px solid;
-}
-
-nav a:first-child:hover {
-  border: none;
-}
-
-#logo {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
+#selected-image {
+  width: 100%;
 }
