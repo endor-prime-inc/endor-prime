@@ -5,8 +5,13 @@ import axios from 'axios';
 import history from '../history';
 import user from './user';
 import products from './products';
+import adminSearch from './admin-search';
 
-const reducer = combineReducers({ user, products });
+const reducer = combineReducers({
+  user,
+  products,
+  adminSearch
+});
 
 const store = createStore(
   reducer,
