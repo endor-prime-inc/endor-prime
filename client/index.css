@@ -1,6 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 .container-fluid {
   margin: 0;
   padding: 0;
+  min-width: 350px;
 }
 
 .product-thumbnail {
@@ -9,4 +14,14 @@
 
 #selected-image {
   width: 100%;
+}
+
+.btn-border-fix {
+  border-top-left-radius: 0%;
+  border-bottom-left-radius: 0%;
+}
+
+.input-border-fix {
+  border-top-right-radius: 0%;
+  border-bottom-right-radius: 0%;
 }
