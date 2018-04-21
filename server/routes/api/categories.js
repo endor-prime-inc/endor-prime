@@ -20,7 +20,7 @@ router.post('/', async (request, response, next) => {
 });
 
 router.get('/:id', async (request, response, next) => {
-  const { id } = request.body;
+  const { id } = request.params;
   try {
     const category = await Category.findById(id, {
       include: [Product]

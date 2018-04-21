@@ -15,17 +15,15 @@ class ProductView extends Component {
     return !product ? (
       <div />
     ) : (
-      <div id="product-view">
+      <div id="product-view" className="container my-2">
         <div id="product-overview" className="row">
-          <div id="product-images" className="col-sm-4 col-12">
-            <div className="card">
-              <img
-                id="selected-image"
-                src={product.pictures[0]}
-                className="card-img-top"
-              />
-            </div>
-            <div id="image-gallery">
+          <div id="product-images card" className="col-sm-4 col-12">
+            <img
+              id="selected-image"
+              src={product.pictures[0]}
+              className="card-img-top"
+            />
+            <div id="image-gallery" className="card-body">
               {product.pictures.map(imgUrl => (
                 <img className="product-thumbnail" key={imgUrl} src={imgUrl} />
               ))}
@@ -36,8 +34,8 @@ class ProductView extends Component {
               <div id="product-title" className="col-12">
                 <h1>{product.name}</h1>
               </div>
-              <div id="average-rating" className="col-sm-3 col-6">
-                {product.rating}
+              <div id="product-ratings" className="col-sm-3 col-6">
+                {product.ratingsAvg} ⭐s from {product.ratingsCount} reviews
               </div>
               <div id="product-price" className="col-sm-3 col-6">
                 {product.price} credits
@@ -71,18 +69,19 @@ class ProductView extends Component {
         <div id="product-reviews" className="row">
           <div id="review-header" className="col-12">
             <AuthLink to={`/products/${product.id}/reviews/add`}>
-              <button>Add review</button>
+              <button className="btn btn-link">Add review</button>
             </AuthLink>
             <Link to={`/products/${product.id}/reviews`}>
-              <button>See all reviews</button>
+              <button className="btn btn-secondary">See all reviews</button>
             </Link>
           </div>
-          <div id="review-list" className="col-12">
-            <ul>
+          <div id="review-list" className="col-12 my-2">
+            <ul className="list-group">
               {product.reviews &&
                 product.reviews.map(review => (
-                  <li key={review.id}>
-                    <div className="individual-rating" />
+                  <li className="list-group-item" key={review.id}>
+                    <div className="individual-rating">{review.rating} ⭐s</div>
+                    <p>{review.user.email}’s review:</p>
                     <p>{review.content}</p>
                   </li>
                 ))}
