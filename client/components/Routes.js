@@ -10,6 +10,7 @@ import NoMatch from './NoMatch';
 import Products from './Products';
 import ProductView from './ProductView';
 import StoreToolbar from './StoreToolbar';
+import Cart from './Cart';
 
 const Routes = () => (
   <div>
@@ -21,6 +22,7 @@ const Routes = () => (
       <AuthRoute path="/account" component={Account} />
       <Route exact path="/products" component={Products} />
       <Route path="/products/:id" component={ProductView} />
+      <Route exact path="/cart" component={Cart} />
       <AdminRoute path="/admin" component={AdminDashboard} />
       <Route component={NoMatch} />
     </Switch>

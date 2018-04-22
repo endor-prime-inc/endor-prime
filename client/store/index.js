@@ -8,13 +8,15 @@ import products from './products';
 import adminSearch from './admin-search';
 import categories from './categories';
 import reviews from './reviews';
+import cart from './cart';
 
 const reducer = combineReducers({
   user,
   products,
   categories,
   reviews,
-  adminSearch
+  adminSearch,
+  cart
 });
 
 const store = createStore(
