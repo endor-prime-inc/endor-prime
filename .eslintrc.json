@@ -1,7 +1,7 @@
 {
-    "extends": "fullstack",
-    "parser": "babel-eslint",
-    "rules": {
-        "semi": [1, "always"]
-    }
+  "extends": "fullstack",
+  "parser": "babel-eslint",
+  "rules": {
+    "semi": [1, "always"]
+  }
 }

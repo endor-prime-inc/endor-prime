@@ -6,7 +6,11 @@ const mapState = state => ({
 });
 
 const AdminSearchbar = () => (
-  <input type="text" className="form-control" placeholder="enter a search term" />
+  <input
+    type="text"
+    className="form-control"
+    placeholder="enter a search term"
+  />
 );
 
 export default connect(mapState)(AdminSearchbar);

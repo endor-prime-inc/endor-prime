@@ -26,7 +26,7 @@ router.get('/:id', async (request, response, next) => {
       include: [Product]
     });
     if (category) {
-      response.json(category)
+      response.json(category);
     } else {
       const error = new Error(`No category found`);
       error.status = 404;
@@ -54,7 +54,6 @@ router.put('/:id', async (request, response, next) => {
     next(error);
   }
 });
-
 
 router.delete('/:id', async (request, response, next) => {
   const { id } = request.params;
