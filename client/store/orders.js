@@ -25,7 +25,7 @@ export const getOrders = () => async (dispatch, _, { axios }) => {
 export const getOrder = id => async (dispatch, _, { axios }) => {
   try {
     const { data } = await axios.get(`/api/orders/${id}`);
-    dispatch(setOrders(data));
+    dispatch(setOrder(data));
   } catch (error) {
     console.error(error);
   }
@@ -68,7 +68,7 @@ export const putOrder = (id, formData) => async (dispatch, _, { axios }) => {
 // Default State
 const defaultState = {};
 
-// Product Catalog Reducer
+// Order Catalog Reducer
 export default (state = defaultState, action) => {
   switch (action.type) {
     case SET_ALL_ORDERS:
