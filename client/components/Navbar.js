@@ -42,8 +42,8 @@ const Navbar = props => (
           </li>
         )}
         <li className="nav-item">
-          <AuthLink to="/home" className="nav-link">
-            Home
+          <AuthLink to="/account" className="nav-link">
+            Account
           </AuthLink>
         </li>
         <li className="nav-item">
