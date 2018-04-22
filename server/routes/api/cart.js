@@ -11,7 +11,7 @@ router.get('/', (request, response, next) => {
 router.put('/', (request, response, next) => {
   try {
     request.session.cart = request.body;
-    response.status(200).json(response.session.cart);
+    response.status(200).json(request.session.cart);
   } catch (error) {
     next(error);
   }
