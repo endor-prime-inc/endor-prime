@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { changeCart } from '../store/cart';
 
 const ProductCard = props => {
-  const { product } = props;
+  const { product, cart } = props;
+
   return (
     <div className="col-12 col-md-6 col-lg-4">
       <div className="card">
@@ -17,13 +20,35 @@ const ProductCard = props => {
           <Link to={`/products/${product.id}`} className="btn btn-primary mr-3">
             Info
           </Link>
-          <Link to={`/products/`} className="btn btn-success">
-            Buy! (temp)
-          </Link>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={() => {
+              props.changeCart({
+                ...cart,
+                [product.id]: cart[product.id] + 1 || 1
+              });
+            }}
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default ProductCard;
+const mapState = state => {
+  const { cart } = state;
+  return { cart };
+};
+
+const mapDispatch = dispatch => {
+  return {
+    changeCart: cart => {
+      dispatch(changeCart(cart));
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(ProductCard);
