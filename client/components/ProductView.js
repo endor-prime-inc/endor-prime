@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { AuthLink } from './auth';
 import { getProduct } from '../store/products';
+import AddToCartButton from './AddToCartButton';
 
 class ProductView extends Component {
   componentDidMount() {
@@ -41,24 +43,7 @@ class ProductView extends Component {
                 {product.price} credits
               </div>
               <div id="product-purchase" className="col-sm-6 col-12">
-                <form id="order-form" className="form-inline">
-                  <div className="form-group mb-2">
-                    <label htmlFor="quantity">Quantity:</label>
-                    <input
-                      type="text"
-                      name="quantity"
-                      className="form-control"
-                      id="product-order-quantity"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="btn btn-primary mb-2"
-                    onClick={() => ''}
-                  >
-                    Add to Cart
-                  </button>
-                </form>
+                <AddToCartButton productId={product.id} />
               </div>
               <div id="product-description" className="col-12">
                 <p>{product.description}</p>
