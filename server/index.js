@@ -1,17 +1,16 @@
-const {db} = require('./db')
-const app = require('./app')
-const PORT = process.env.PORT || 8080
+const { db } = require('./db');
+const app = require('./app');
+const PORT = process.env.PORT || 8080;
 
 if (process.env.NODE_ENV !== 'production') {
   try {
-    require('./secrets')
+    require('./secrets');
   } catch (err) {
-    console.log('No secrets file found - make sure to add one!')
+    console.log('No secrets file found - make sure to add one!');
   }
 }
 
-db.sync()
-  .then(() => {
-    console.log('The database is synced')
-    app.listen(PORT, () => console.log(`Listening on port ${PORT}`))
-  })
+db.sync().then(() => {
+  console.log('The database is synced');
+  app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+});

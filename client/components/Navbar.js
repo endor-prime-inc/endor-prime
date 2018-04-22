@@ -18,7 +18,8 @@ const Navbar = props => (
       type="button"
       data-toggle="collapse"
       data-target="#navbar-supported-content"
-      aria-controls="navbar-supported-content" aria-expanded="false"
+      aria-controls="navbar-supported-content"
+      aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span className="navbar-toggler-icon" />
@@ -26,22 +27,24 @@ const Navbar = props => (
 
     <div className="collapse navbar-collapse" id="navbar-supported-content">
       <ul className="navbar-nav mr-auto">
-        { 
-          !props.isLoggedIn &&
+        {!props.isLoggedIn && (
           <li className="nav-item">
             <Link to="/login" className="nav-link">
               Login
             </Link>
           </li>
-        }
-        {
-          !props.isLoggedIn &&
+        )}
+        {!props.isLoggedIn && (
           <li className="nav-item">
-            <Link to="/signup" className="nav-link">Signup</Link>
+            <Link to="/signup" className="nav-link">
+              Signup
+            </Link>
           </li>
-        }
+        )}
         <li className="nav-item">
-          <AuthLink to="/home" className="nav-link">Home</AuthLink>
+          <AuthLink to="/home" className="nav-link">
+            Home
+          </AuthLink>
         </li>
         <li className="nav-item">
           <AuthLink to="/" className="nav-link">

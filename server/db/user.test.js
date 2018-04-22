@@ -1,31 +1,31 @@
 /* eslint-env mocha,chai */
 
-const {expect} = require('chai')
-const {db, User} = require('./index')
+const { expect } = require('chai');
+const { db, User } = require('./index');
 
 describe('User model', () => {
   beforeEach(() => {
-    return db.sync({force: true})
-  })
+    return db.sync({ force: true });
+  });
 
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
-      let cody
+      let cody;
 
       beforeEach(async () => {
         cody = await User.create({
           email: 'cody@puppybook.com',
           password: 'bones'
-        })
-      })
+        });
+      });
 
       it('returns true if the password is correct', () => {
-        expect(cody.correctPassword('bones')).to.be.equal(true)
-      })
+        expect(cody.correctPassword('bones')).to.be.equal(true);
+      });
 
       it('returns false if the password is incorrect', () => {
-        expect(cody.correctPassword('bonez')).to.be.equal(false)
-      })
-    }) // end describe('correctPassword')
-  }) // end describe('instanceMethods')
-}) // end describe('User model')
+        expect(cody.correctPassword('bonez')).to.be.equal(false);
+      });
+    }); // end describe('correctPassword')
+  }); // end describe('instanceMethods')
+}); // end describe('User model')

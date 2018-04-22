@@ -1,1 +1,1 @@
-export {default as App} from './LoadInitialData'
+export { default as App } from './LoadInitialData';

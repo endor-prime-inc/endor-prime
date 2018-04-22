@@ -64,9 +64,7 @@ router.delete('/:id', async (request, response, next) => {
     if (deleted) {
       response.sendStatus(200);
     } else {
-      const error = new Error(
-        `Could not delete order with ID: ${id}`
-      );
+      const error = new Error(`Could not delete order with ID: ${id}`);
       error.status = 400;
       next(error);
     }

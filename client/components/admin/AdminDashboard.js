@@ -6,13 +6,13 @@ import AdminRoutes from './AdminRoutes';
 
 const AdminDashboard = props => {
   return (
-  <div className="row">
-    <div className="col-12">
-      <AdminNav />
-      <AdminSearchbar />
-      <AdminRoutes {...props} />
+    <div className="row">
+      <div className="col-12">
+        <AdminNav />
+        <AdminSearchbar />
+        <AdminRoutes {...props} />
+      </div>
     </div>
-  </div>
   );
 };
 
