@@ -9,6 +9,10 @@
   min-width: 350px;
 }
 
+#storeToolbar {
+  background-color: rgb(240, 240, 240);
+}
+
 .product-thumbnail {
   width: 6em;
 }

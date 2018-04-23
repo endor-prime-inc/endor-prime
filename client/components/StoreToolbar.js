@@ -5,7 +5,7 @@ import CategoryDropdown from './CategoryDropdown';
 import SearchBar from './SearchBar';
 
 const StoreToolbar = ({ categories }) => (
-  <div className="row py-3 m-0 mb-3" style={{ backgroundColor: '#F0F0F0' }}>
+  <div id="storeToolbar" className="row py-3 m-0 mb-3">
     <div className="col-auto mr-auto">
       <CategoryDropdown categories={categories} />
     </div>
