@@ -53,7 +53,6 @@ router.put('/:id', async (request, response, next) => {
       next(error);
     }
   } catch (error) {
-    console.log(error);
     next(error);
   }
 });
