@@ -5,18 +5,13 @@ import React from 'react';
 import enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import CategoryDropdown from '../CategoryDropdown';
-// import { MemoryRouter } from 'react-router-dom';
 
 const adapter = new Adapter();
-// const disableLifecycleMethods = true;
 enzyme.configure({
   adapter
-  // disableLifecycleMethods
 });
 
 describe('CategoryDropdown', () => {
-  // const resolves = () => Promise.resolve('Oh yeah');
-  // const rejects = () => Promise.reject(new Error('Oh noes'));
   const categories = {
     1: { id: 1, name: 'Blasters' },
     2: { id: 2, name: 'Lightsabers' }
