@@ -9,6 +9,7 @@ import adminSearch from './admin-search';
 import categories from './categories';
 import reviews from './reviews';
 import cart from './cart';
+import orders from './orders';
 
 const reducer = combineReducers({
   user,
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   categories,
   reviews,
   adminSearch,
+  orders,
   cart
 });
 
