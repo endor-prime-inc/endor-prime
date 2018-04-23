@@ -12,6 +12,13 @@ const Order = db.define('orders', {
       notEmpty: true
     }
   },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
   planet: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -20,13 +27,15 @@ const Order = db.define('orders', {
       notEmpty: true
     },
   },
-  region: {
-    type: Sequelize.STRING,
+  latitude: {
+    type: Sequelize.FLOAT,
     allowNull: false,
-    defaultValue: 'Mos Eisley',
-    validate: {
-      notEmpty: true
-    }
+    defaultValue: 0,
+  },
+  longitude: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+    defaultValue: 0,
   },
   status: {
     type: Sequelize.ENUM,
