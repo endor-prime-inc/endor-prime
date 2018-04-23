@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 
 const db = require('./database');
-const statesAndTerritories = require('../../shared/states-territories.json');
 
 const Order = db.define('orders', {
   // We need to associate an order with an email address to accomodate
