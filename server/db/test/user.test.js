@@ -1,7 +1,7 @@
 /* eslint-env mocha,chai */
 
 const { expect } = require('chai');
-const { db, User } = require('./index');
+const { db, User } = require('../index');
 
 describe('User model', () => {
   beforeEach(() => {

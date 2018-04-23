@@ -40,11 +40,13 @@ router.get('/:id', async (request, response, next) => {
 router.put('/:id', async (request, response, next) => {
   const { id } = request.params;
   try {
-    const updated = await Category.update(request.body, {
-      where: { id }
+    const [numUpdated, updatedRows] = await Category.update(request.body, {
+      where: { id },
+      returning: true
     });
-    if (updated[0]) {
-      response.status(200).json(updated[1][0]);
+    
+    if (numUpdated > 0) {
+      response.status(200).json(updatedRows[0]);
     } else {
       const error = new Error(`No category with the ID ${id}`);
       error.status = 400;
@@ -62,7 +64,7 @@ router.delete('/:id', async (request, response, next) => {
       where: { id }
     });
     if (destroyed > 0) {
-      response.json({ message: 'Deleted successfully' });
+      response.json({ id, message: 'Deleted successfully' });
     } else {
       const error = new Error(`We have no category with the ID ${id}`);
       error.status = 400;

@@ -2,8 +2,8 @@
 
 const { expect } = require('chai');
 const request = require('supertest');
-const { db, User } = require('../../db');
-const app = require('../../app');
+const { db, User } = require('../../../db');
+const app = require('../../../app');
 
 describe('User routes', () => {
   beforeEach(async () => {

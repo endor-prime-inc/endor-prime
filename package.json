@@ -12,10 +12,8 @@
     "seed": "node scripts/seed.js",
     "start": "node server",
     "start:dev": "webpack -w & nodemon server --ignore public",
-    "test:server":
-      "DATABASE_URL=postgres://localhost/endor-prime-test mocha './server/**/*.test.js' --require babel-polyfill --exit",
-    "test:client":
-      "DATABASE_URL=postgres://localhost/endor-prime-test mocha './client/**/*.test.js' --require babel-polyfill --require babel-register --exit",
+    "test:server": "DATABASE_URL=postgres://localhost/endor-prime-test mocha './server/**/*.test.js' --require babel-polyfill --exit",
+    "test:client": "DATABASE_URL=postgres://localhost/endor-prime-test mocha './client/**/*.test.js' --require babel-polyfill --require babel-register --exit",
     "test": "npm run test:server && npm run test:client"
   },
   "author": "",
@@ -23,6 +21,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
+    "chai-as-promised": "^7.1.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "history": "^4.7.2",
