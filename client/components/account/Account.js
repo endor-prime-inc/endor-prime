@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import AccountDashboard from './AccountDashboard';
 import AccountOrders from './AccountOrders';
-import NoMatch from './NoMatch';
+import NoMatch from '../NoMatch';
 
 const Routes = () => (
   <div>
