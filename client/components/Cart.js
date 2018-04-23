@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { changeCart } from '../store/cart';
+
 
 // Still causes a one time error when first loading the cart with a product
 
@@ -117,9 +119,11 @@ class Cart extends Component {
         </form>
         <div className="row mt-5">
           <div className="col-12">
-            <button type="button" className="btn btn-success float-right">
-              Checkout >>
-            </button>
+            <Link to="/checkout">
+              <button type="button" className="btn btn-success float-right">
+                Checkout >>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

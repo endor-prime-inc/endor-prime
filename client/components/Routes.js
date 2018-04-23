@@ -11,6 +11,7 @@ import Products from './Products';
 import ProductView from './ProductView';
 import StoreToolbar from './StoreToolbar';
 import Cart from './Cart';
+import Checkout from './Checkout';
 
 const Routes = () => (
   <div>
@@ -23,6 +24,7 @@ const Routes = () => (
       <Route exact path="/products" component={Products} />
       <Route path="/products/:id" component={ProductView} />
       <Route exact path="/cart" component={Cart} />
+      <Route exact path="/checkout" component={Checkout} />
       <AdminRoute path="/admin" component={AdminDashboard} />
       <Route component={NoMatch} />
     </Switch>
