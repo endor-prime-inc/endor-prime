@@ -7,8 +7,8 @@ import NoMatch from './NoMatch';
 const Routes = () => (
   <div>
     <Switch>
-      <Route exact path="/" component={AccountDashboard} />
-      <Route path="/orders" component={AccountOrders} />
+      <Route exact path="/account/" component={AccountDashboard} />
+      <Route path="/account/orders" component={AccountOrders} />
       <Route component={NoMatch} />
     </Switch>
   </div>
