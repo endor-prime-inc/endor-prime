@@ -1,5 +1,6 @@
-const db = require('./database');
 const Sequelize = require('sequelize');
+
+const db = require('./database');
 
 const Order = db.define('orders', {
   // We need to associate an order with an email address to accomodate
@@ -11,10 +12,36 @@ const Order = db.define('orders', {
       notEmpty: true
     }
   },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  },
+  planet: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: 'Tatooine',
+    validate: {
+      notEmpty: true
+    },
+  },
+  latitude: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  longitude: {
+    type: Sequelize.FLOAT,
+    allowNull: false,
+    defaultValue: 0,
+  },
   status: {
     type: Sequelize.ENUM,
     values: ['created', 'processing', 'cancelled', 'completed'],
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'created'
   }
 });
 
