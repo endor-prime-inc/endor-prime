@@ -15,6 +15,7 @@ const Order = db.define('orders', {
   name: {
     type: Sequelize.STRING,
     allowNull: false,
+    defaultValue: 'Luke'
     validate: {
       notEmpty: true
     }
