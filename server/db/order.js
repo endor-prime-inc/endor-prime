@@ -13,39 +13,27 @@ const Order = db.define('orders', {
       notEmpty: true
     }
   },
-  streetAddress: {
+  planet: {
     type: Sequelize.STRING,
     allowNull: false,
-    defaultValue: 'Skywalker Ranch',
+    defaultValue: 'Tatooine',
+    validate: {
+      notEmpty: true
+    },
+  },
+  region: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: 'Mos Eisley',
     validate: {
       notEmpty: true
     }
-  },
-  // Apartment, Suite, etc.
-  addressSecondary: {
-    type: Sequelize.STRING,
-    validate: {
-      notEmpty: true
-    }
-  },
-  city: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    defaultValue: 'Nicasio',
-    validate: {
-      notEmpty: true
-    }
-  },
-  state: {
-    type: Sequelize.ENUM,
-    values: Object.keys(statesAndTerritories),
-    allowNull: false,
-    defaultValue: 'CA'
   },
   status: {
     type: Sequelize.ENUM,
     values: ['created', 'processing', 'cancelled', 'completed'],
-    allowNull: false
+    allowNull: false,
+    defaultValue: 'created'
   }
 });
 
