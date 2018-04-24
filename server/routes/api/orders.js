@@ -16,7 +16,7 @@ router.post('/', async (request, response, next) => {
     const order = await Order.create(request.body);
     const { cart } = request.body;
 
-    const productsPurchased = Product.findAll({
+    const productsPurchased = await Product.findAll({
       where: { id: Object.keys(cart) }
     });
 
