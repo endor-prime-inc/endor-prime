@@ -64,7 +64,7 @@ const seed = async () => {
       userId: 1
     }),
     Review.create({ content: 'Meh', rating: 2, productId: 1, userId: 2 }),
-    Review.create({ content: 'Bad', rating: 0, productId: 4, userId: 2 }),
+    Review.create({ content: 'Bad', rating: 1, productId: 4, userId: 2 }),
     Review.create({
       content: 'Great! 5 stars!',
       rating: 5,

@@ -1,62 +1,67 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { postOrder } from '../store/orders';
+import ThankYouForYourOrder from './ThankYouForYourOrder';
 
 class Checkout extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      email: '',
+      planet: 'Tatooine',
+      latitude: 0,
+      longitude: 0,
+      payment: '-',
+      card: '00-0000-000-000-00-0000-00',
+      cart: {},
+      completed: false
+    };
+  }
+
+  componentDidMount = () => {
+    this.setState({ cart: this.props.cart });
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.postOrder(this.state).then(() => {
+      this.setState({ completed: true });
+    });
+  };
+
   render() {
-    return (
+    const cartExists = Object.keys(this.props.cart).length;
+    if (!cartExists) {
+      return <Redirect to={`/cart`} />;
+    }
+
+    return this.state.completed ? (
+      <ThankYouForYourOrder />
+    ) : (
       <div className="container">
         <h3>Checkout</h3>
         <hr />
-        <form>
-          <div className="form-group">
-            <label htmlFor="address1">Address</label>
-            <input
-              type="text"
-              className="form-control"
-              id="address1"
-              name="address1"
-              value="1138 Skywalker Lane"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="address2">Address 2</label>
-            <input
-              type="text"
-              className="form-control"
-              id="address2"
-              name="address2"
-              value="Apartment, Studo, or Floor"
-            />
-          </div>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label htmlFor="city">City</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 className="form-control"
-                id="city"
-                name="city"
+                id="name"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChange}
               />
             </div>
-            <div className="form-group col-md-4">
-              <label htmlFor="state">State</label>
-              <select id="state" className="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div className="form-group col-md-2">
-              <label htmlFor="zip">Zip</label>
-              <input
-                type="text"
-                className="form-control"
-                id="zip"
-                name="zip"
-                value="34242"
-              />
-            </div>
-          </div>
-          <hr />
-          <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="email">E-mail</label>
               <input
@@ -64,23 +69,85 @@ class Checkout extends Component {
                 className="form-control"
                 id="email"
                 name="email"
-                value="lukeskywalker@jedimail.com"
+                value={this.state.email}
+                onChange={this.handleChange}
               />
             </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group col-md-6">
+              <label htmlFor="planet">Planet</label>
+              <input
+                type="text"
+                className="form-control"
+                id="planet"
+                name="planet"
+                value={this.state.planet}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form-group col-md-3">
+              <label htmlFor="latitude">Latitude</label>
+              <input
+                type="number"
+                step=".000001"
+                min="-180"
+                max="180"
+                className="form-control"
+                id="latitude"
+                name="latitude"
+                value={this.state.latitude}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form-group col-md-3">
+              <label htmlFor="longitude">Longitude</label>
+              <input
+                type="number"
+                step=".000001"
+                min="-180"
+                max="180"
+                className="form-control"
+                id="longitude"
+                name="longitude"
+                value={this.state.longitude}
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
+          <hr />
+          <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="payment">Payment Type</label>
-              <select id="payment" className="form-control">
-                <option selected>-</option>
-                <option>CreditPal</option>
-                <option>Imperial Express</option>
-                <option>Visa</option>
-                <option>RebelCard</option>
-                <option>Endor Payments</option>
+              <select
+                id="payment"
+                className="form-control"
+                name="payment"
+                value={this.state.payment}
+                onChange={this.handleChange}
+              >
+                <option name="undefined">-</option>
+                <option name="CreditPal">CreditPal</option>
+                <option name="Imperial Express">Imperial Express</option>
+                <option name="Visa">Visa</option>
+                <option name="RebelCard">RebelCard</option>
+                <option name="Endor Payments">Endor Payments</option>
               </select>
+            </div>
+            <div className="form-group col-md-6">
+              <label htmlFor="card">Card Number</label>
+              <input
+                type="text"
+                className="form-control"
+                id="card"
+                name="card"
+                value={this.state.card}
+                onChange={this.handleChange}
+              />
             </div>
           </div>
           <button type="submit" className="btn btn-primary float-right mt-3">
-            Finish Checkout
+            Complete Checkout
           </button>
         </form>
       </div>
@@ -88,4 +155,17 @@ class Checkout extends Component {
   }
 }
 
-export default Checkout;
+const mapState = state => {
+  const { orders, cart, products } = state;
+  return { orders, cart, products };
+};
+
+const mapDispatch = dispatch => {
+  return {
+    postOrder: async formData => {
+      await dispatch(postOrder(formData));
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(Checkout);

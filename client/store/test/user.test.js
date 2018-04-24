@@ -1,7 +1,7 @@
 /* eslint-env mocha,chai */
 
 import { expect } from 'chai';
-import { me, logout } from './user';
+import { me, logout } from '../user';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
@@ -27,6 +27,7 @@ describe('thunk creators', () => {
       const fakeUser = { email: 'Cody' };
       mockAxios.onGet('/auth').replyOnce(200, fakeUser);
       await store.dispatch(me());
+      console.log(store);
       const [getUserAction] = store.getActions();
       expect(getUserAction.type).to.be.equal('GET_USER');
       expect(getUserAction.user).to.be.deep.equal(fakeUser);
