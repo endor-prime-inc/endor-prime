@@ -1,7 +1,7 @@
 import React from 'react';
 import querystring from 'querystring';
 import { connect } from 'react-redux';
-import RenderProducts from './RenderProducts';
+import ProductList from './ProductList';
 
 const Products = props => {
   let listView = false;
@@ -27,7 +27,7 @@ const Products = props => {
     : categoryFilteredProducts;
 
   return (
-    <RenderProducts
+    <ProductList
       filteredProducts={searchFilteredProducts}
       listView={listView}
     />
