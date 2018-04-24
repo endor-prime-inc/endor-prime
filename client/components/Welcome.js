@@ -1,6 +1,7 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 
 // Welcome: a landing page for unauthenticated users
-const Welcome = () => <h1>Welcome to Grace Shopper!</h1>;
+const Welcome = () => <Redirect to={`/products`} />;
 
 export default Welcome;
