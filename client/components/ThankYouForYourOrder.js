@@ -6,7 +6,7 @@ class ThankYouForYourOrder extends Component {
   componentDidMount = () => {
     setTimeout(() => {
       this.props.changeCart({});
-    }, 10000);
+    }, 5000);
   };
 
   render() {
