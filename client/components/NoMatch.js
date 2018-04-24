@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom';
 
 // NoMatch: how did you even get here?
 const NoMatch = () => (
-  <div className="column">
-    <span>
-      A ship in port is safe; but that is not what ships are built for.
-    </span>
-    <span>
+  <div className="container text-center">
+    <h4>A ship in port is safe; but that is not what ships are built for.</h4>
+    <h4>
       Consider returning to <Link to="/">port</Link> though.
-    </span>
+    </h4>
   </div>
 );
 
