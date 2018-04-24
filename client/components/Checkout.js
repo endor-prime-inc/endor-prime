@@ -3,7 +3,6 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { postOrder } from '../store/orders';
 import ThankYouForYourOrder from './ThankYouForYourOrder';
-import NoCheckoutAllowed from './NoCheckoutAllowed';
 
 class Checkout extends Component {
   constructor() {
