@@ -44,7 +44,6 @@ router.put('/:id', async (request, response, next) => {
       where: { id },
       returning: true
     });
-    
     if (numUpdated > 0) {
       response.status(200).json(updatedRows[0]);
     } else {
