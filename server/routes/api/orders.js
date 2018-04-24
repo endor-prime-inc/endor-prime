@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Order, Product } = require('../../db');
+const { Order, Product, OrderProducts } = require('../../db');
 module.exports = router;
 
 router.get('/', async (request, response, next) => {
@@ -14,6 +14,21 @@ router.get('/', async (request, response, next) => {
 router.post('/', async (request, response, next) => {
   try {
     const order = await Order.create(request.body);
+    const { cart } = request.body;
+
+    const productsPurchased = Product.findAll({
+      where: { id: Object.keys(cart) }
+    });
+
+    const lineItems = productsPurchased.map(product => ({
+      productId: product.id,
+      orderId: order.id,
+      price: product.price,
+      quantity: cart[product.id]
+    }));
+
+    await OrderProducts.bulkCreate(lineItems);
+
     response.status(201).json(order);
   } catch (error) {
     next(error);
@@ -23,7 +38,7 @@ router.post('/', async (request, response, next) => {
 router.get('/:id', async (request, response, next) => {
   try {
     const order = await Order.findById(request.params.id, {
-      include: [Product]
+      include: [{ model: OrderProducts, include: [{ model: Product }] }]
     });
     if (order) {
       response.json(order);
@@ -49,22 +64,6 @@ router.put('/:id', async (request, response, next) => {
       response.status(200).json(updated[1][0]);
     } else {
       const error = new Error(`No order with the ID ${id}`);
-      error.status = 400;
-      next(error);
-    }
-  } catch (error) {
-    next(error);
-  }
-});
-
-router.delete('/:id', async (request, response, next) => {
-  const { id } = request.params;
-  try {
-    const deleted = await Order.destroy({ where: { id } });
-    if (deleted) {
-      response.sendStatus(200);
-    } else {
-      const error = new Error(`Could not delete order with ID: ${id}`);
       error.status = 400;
       next(error);
     }
