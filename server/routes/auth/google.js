@@ -18,15 +18,15 @@ router.get('/', passport.authenticate('google', { scope: 'email' }));
 router.get(
   '/callback',
   passport.authenticate('google', {
-    successRedirect: '/home',
+    successRedirect: '/',
     failureRedirect: '/'
   })
 );
 
 // For passport.authenticate to work, it needs a strategy, which we will configure below!
 const googleCredentials = {
-  clientID: process.env.GOOGLE_CLIENT_ID || 'foo',
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'bar',
+  clientID: process.env.GOOGLE_CLIENT_ID || require('../../secrets').GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET || require('../../secrets').GOOGLE_CLIENT_SECRET,
   callbackURL: '/auth/google/callback'
 };
 
