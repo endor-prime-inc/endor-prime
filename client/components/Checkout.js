@@ -21,7 +21,10 @@ class Checkout extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({ cart: this.props.cart });
+    this.setState({
+      cart: this.props.cart,
+      email: this.props.user.email || ''
+    });
   };
 
   handleChange = event => {
@@ -156,8 +159,8 @@ class Checkout extends Component {
 }
 
 const mapState = state => {
-  const { orders, cart, products } = state;
-  return { orders, cart, products };
+  const { orders, cart, products, user } = state;
+  return { orders, cart, products, user };
 };
 
 const mapDispatch = dispatch => {
