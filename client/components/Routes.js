@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { AdminRoute, AuthRoute, Login, Signup } from './auth';
 
 import Welcome from './Welcome';
-import Account from './Account';
+import Account from './account/Account';
 import AdminDashboard from './admin/AdminDashboard';
 import NoMatch from './NoMatch';
 import Products from './Products';

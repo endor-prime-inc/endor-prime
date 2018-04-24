@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import OrdersList from './OrdersList';
-import { getOrders } from '../store/orders';
+import OrdersList from '../OrdersList';
+import { getOrders } from '../../store/orders';
 
 class AccountOrders extends Component {
   componentDidMount() {
