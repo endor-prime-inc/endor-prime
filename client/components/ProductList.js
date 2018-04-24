@@ -1,24 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProductItem from './ProductItem';
+import ProductCard from './ProductCard';
 
-const ProductList = props => {
-  const { product } = props;
+const RenderProducts = props => {
+  const { filteredProducts, listView } = props;
   return (
-    <div className="col-12 mt-3">
+    <div className="container">
       <div className="row">
-        <div className="col-1">{product.id}</div>
-        <div className="col-5">{product.name}</div>
-        <div className="col">
-          <Link
-            to={`/products/${product.id}`}
-            className="btn btn-warning float-right"
-          >
-            Edit
-          </Link>
-        </div>
+        {filteredProducts.map(product => {
+          return listView ? (
+            <ProductItem key={product.id} product={product} />
+          ) : (
+            <ProductCard key={product.id} product={product} />
+          );
+        })}
       </div>
     </div>
   );
 };
 
-export default ProductList;
+export default RenderProducts;
