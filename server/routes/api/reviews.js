@@ -13,7 +13,8 @@ router.get('/', async (request, response, next) => {
 
 router.post('/', async (request, response, next) => {
   try {
-    const review = await Review.create(request.body);
+    console.log(request.user.id);
+    const review = await Review.create({ ...request.body, userId: request.user.id });
     response.status(201).json(review);
   } catch (error) {
     next(error);

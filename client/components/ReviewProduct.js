@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { getProduct } from '../store/products';
+import { postReview } from '../store/reviews';
 
 class ReviewProduct extends React.Component {
   state = {
-    rating: 0,
+    rating: 1,
     content: ''
   };
 
@@ -14,7 +15,8 @@ class ReviewProduct extends React.Component {
       [event.target.name]: event.target.value
     });
 
-  handleSubmit = async () => {
+  handleSubmit = async (event) => {
+    event.preventDefault();
     const { postReview, product } = this.props;
     await postReview({
       rating: this.state.rating,
@@ -31,6 +33,8 @@ class ReviewProduct extends React.Component {
           <input
             type="number"
             name="rating"
+            min="1"
+            max="5"
             className="form-control"
             onChange={this.handleChange}
             value={this.state.rating}
@@ -53,8 +57,9 @@ const mapStateToProps = (state, ownProps) => ({
   history: ownProps.history
 });
 
-const mapDispatchToProps = () => ({
-  getProduct
+const mapDispatchToProps = (dispatch) => ({
+  getProduct: id => dispatch(getProduct(id)),
+  postReview: data => dispatch(postReview(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewProduct);
