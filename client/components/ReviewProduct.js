@@ -6,7 +6,7 @@ import { postReview } from '../store/reviews';
 
 class ReviewProduct extends React.Component {
   state = {
-    rating: 1,
+    rating: 5,
     content: ''
   };
 
