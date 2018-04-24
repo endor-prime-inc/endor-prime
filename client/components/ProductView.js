@@ -53,7 +53,7 @@ class ProductView extends Component {
         </div>
         <div id="product-reviews" className="row">
           <div id="review-header" className="col-12">
-            <AuthLink to={`/products/${product.id}/reviews/add`}>
+            <AuthLink to={`/products/${product.id}/add-review`}>
               <button className="btn btn-link">Add review</button>
             </AuthLink>
             <Link to={`/products/${product.id}/reviews`}>
