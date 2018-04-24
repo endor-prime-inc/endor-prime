@@ -8,16 +8,19 @@ import configureMockStore from 'redux-mock-store';
 import thunks from 'redux-thunk';
 import { createMemoryHistory } from 'history';
 
-const history = createMemoryHistory();
-const mockAxios = new MockAdapter(axios);
-const middlewares = [thunks.withExtraArgument({ axios, history })];
-const mockStore = configureMockStore(middlewares);
-
 describe('thunk creators', () => {
+  let history;
+  let mockAxios;
+  let middlewares;
+  let mockStore;
   let store;
   const initialState = { user: {} };
 
   beforeEach(() => {
+    history = createMemoryHistory();
+    mockAxios = new MockAdapter(axios);
+    middlewares = [thunks.withExtraArgument({ axios, history })];
+    mockStore = configureMockStore(middlewares);
     mockAxios.reset();
     store = mockStore(initialState);
   });
@@ -27,7 +30,6 @@ describe('thunk creators', () => {
       const fakeUser = { email: 'Cody' };
       mockAxios.onGet('/auth').replyOnce(200, fakeUser);
       await store.dispatch(me());
-      console.log(store);
       const [getUserAction] = store.getActions();
       expect(getUserAction.type).to.be.equal('GET_USER');
       expect(getUserAction.user).to.be.deep.equal(fakeUser);
