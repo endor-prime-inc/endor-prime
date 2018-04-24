@@ -8,7 +8,7 @@ const OrderItem = props => {
     <li className="list-group-item">
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title">Order #{order.id}</h5>
+          <h5 className="card-title">Order ID #{order.id}</h5>
           <p className="card-text">Order placed: {order.createdAt}</p>
           <p className="card-text">Order status: {order.status}</p>
           <Link

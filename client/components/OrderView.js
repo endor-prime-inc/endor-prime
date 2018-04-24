@@ -10,7 +10,6 @@ class OrderView extends Component {
 
   render() {
     const { order } = this.props;
-    console.log(order);
     return order ? (
       <div id="order-view" className="container my-2">
         <h2>Order ID #{order.id}</h2>
