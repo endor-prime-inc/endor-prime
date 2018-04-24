@@ -35,7 +35,10 @@ class OrderView extends Component {
           <div className="col-1">Subtotal: </div>
           <div className="col-1">
             {order.products.reduce(
-              (acc, product) => product.quantity * product.price + acc,
+              (acc, product) =>
+                product['order-products'].quantity *
+                  product['order-products'].price +
+                acc,
               0
             )}
           </div>
