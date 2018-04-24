@@ -38,7 +38,7 @@ router.post('/', async (request, response, next) => {
 router.get('/:id', async (request, response, next) => {
   try {
     const order = await Order.findById(request.params.id, {
-      include: [{ model: OrderProducts, include: [{ model: Product }] }]
+      include: [Product]
     });
     if (order) {
       response.json(order);
