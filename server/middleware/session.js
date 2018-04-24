@@ -7,7 +7,7 @@ module.exports = router;
 // Session middleware
 router.use(
   session({
-    secret: process.env.SESSION_SECRET || 'This is not a very secure secret...',
+    secret: process.env.SESSION_SECRET || require('../secrets').sessionSecret,
     resave: false,
     saveUninitialized: false
   })
