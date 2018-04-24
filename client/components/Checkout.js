@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { postOrder } from '../store/orders';
 import ThankYouForYourOrder from './ThankYouForYourOrder';
+import NoCheckoutAllowed from './NoCheckoutAllowed';
 
 class Checkout extends Component {
   constructor() {
@@ -9,15 +11,19 @@ class Checkout extends Component {
     this.state = {
       name: '',
       email: '',
-      planet: '',
-      latitude: '00.000000',
-      longitude: '00.000000',
+      planet: 'Tatooine',
+      latitude: 0,
+      longitude: 0,
       payment: '-',
       card: '00-0000-000-000-00-0000-00',
       cart: {},
       completed: false
     };
   }
+
+  componentDidMount = () => {
+    this.setState({ cart: this.props.cart });
+  };
 
   handleChange = event => {
     this.setState({
@@ -32,11 +38,12 @@ class Checkout extends Component {
     });
   };
 
-  componentDidMount = () => {
-    this.setState({ cart: this.props.cart });
-  };
-
   render() {
+    const cartExists = Object.keys(this.props.cart).length;
+    if (!cartExists) {
+      return <Redirect to={`/cart`} />;
+    }
+
     return this.state.completed ? (
       <ThankYouForYourOrder />
     ) : (
@@ -83,7 +90,10 @@ class Checkout extends Component {
             <div className="form-group col-md-3">
               <label htmlFor="latitude">Latitude</label>
               <input
-                type="text"
+                type="number"
+                step=".000001"
+                min="-180"
+                max="180"
                 className="form-control"
                 id="latitude"
                 name="latitude"
@@ -94,7 +104,10 @@ class Checkout extends Component {
             <div className="form-group col-md-3">
               <label htmlFor="longitude">Longitude</label>
               <input
-                type="text"
+                type="number"
+                step=".000001"
+                min="-180"
+                max="180"
                 className="form-control"
                 id="longitude"
                 name="longitude"
@@ -135,7 +148,7 @@ class Checkout extends Component {
             </div>
           </div>
           <button type="submit" className="btn btn-primary float-right mt-3">
-            Finish Checkout
+            Complete Checkout
           </button>
         </form>
       </div>
@@ -144,8 +157,8 @@ class Checkout extends Component {
 }
 
 const mapState = state => {
-  const { orders, cart } = state;
-  return { orders, cart };
+  const { orders, cart, products } = state;
+  return { orders, cart, products };
 };
 
 const mapDispatch = dispatch => {
