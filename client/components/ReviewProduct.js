@@ -15,7 +15,7 @@ class ReviewProduct extends React.Component {
       [event.target.name]: event.target.value
     });
 
-  handleSubmit = async (event) => {
+  handleSubmit = async event => {
     event.preventDefault();
     const { postReview, product } = this.props;
     await postReview({
@@ -28,25 +28,38 @@ class ReviewProduct extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="number"
-            name="rating"
-            min="1"
-            max="5"
-            className="form-control"
-            onChange={this.handleChange}
-            value={this.state.rating}
-          />
-          <textarea
-            name="content"
-            className="form-control"
-            onChange={this.handleChange}
-            value={this.state.content}
-          />
-          <button className="btn btn-primary" type="submit">Leave Review</button>
-        </form>
+      <div className="container">
+        <div className="row">
+          <div className="col-12 text-center">
+            <h2>{this.props.product.name} Review</h2>
+          </div>
+          <div className="col-12">
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group">
+                <input
+                  type="number"
+                  name="rating"
+                  min="1"
+                  max="5"
+                  className="form-control"
+                  onChange={this.handleChange}
+                  value={this.state.rating}
+                />
+              </div>
+              <div className="form-group">
+                <textarea
+                  name="content"
+                  className="form-control"
+                  onChange={this.handleChange}
+                  value={this.state.content}
+                />
+              </div>
+              <button className="btn btn-primary" type="submit">
+                Leave Review
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }
@@ -57,7 +70,7 @@ const mapStateToProps = (state, ownProps) => ({
   history: ownProps.history
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   getProduct: id => dispatch(getProduct(id)),
   postReview: data => dispatch(postReview(data))
 });

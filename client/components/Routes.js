@@ -24,7 +24,7 @@ const Routes = () => (
       <AuthRoute path="/account" component={Account} />
       <Route exact path="/products" component={Products} />
       <Route exact path="/products/:id" component={ProductView} />
-      <Route exact path="/products/:id/add-review" component={ReviewProduct} />
+      <AuthRoute exact path="/products/:id/add-review" component={ReviewProduct} />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/checkout" component={Checkout} />
       <AdminRoute path="/admin" component={AdminDashboard} />
