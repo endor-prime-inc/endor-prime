@@ -13,8 +13,8 @@ const mapState = (state, ownProps) => {
 // the logged in user. Only admin users should see these
 // types of links. We could even extend this pattern to include
 // other kinds of permissions as well!
-export const AdminLink = ({ isAdmin, to, children }) => {
-  return isAdmin && <Link to={to}>{children}</Link>;
+export const AdminLink = ({ isAdmin, to, children, className }) => {
+  return isAdmin ? <Link to={to} className={className}>{children}</Link> : null;
 };
 
 export default withRouter(connect(mapState)(AdminLink));

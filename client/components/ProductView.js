@@ -56,11 +56,9 @@ class ProductView extends Component {
             <AuthLink to={`/products/${product.id}/add-review`}>
               <button className="btn btn-link">Add review</button>
             </AuthLink>
-            <Link to={`/products/${product.id}/reviews`}>
-              <button className="btn btn-secondary">See all reviews</button>
-            </Link>
           </div>
           <div id="review-list" className="col-12 my-2">
+            <h4>Reviews</h4>
             <ul className="list-group">
               {product.reviews &&
                 product.reviews.map(review => (
@@ -77,6 +75,7 @@ class ProductView extends Component {
     );
   }
 }
+
 const mapStateToProps = (state, ownProps) => ({
   product: state.products[ownProps.match.params.id]
 });
