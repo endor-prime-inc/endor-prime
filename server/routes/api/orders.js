@@ -57,11 +57,12 @@ router.get('/:id', async (request, response, next) => {
 router.put('/:id', async (request, response, next) => {
   const { id } = request.params;
   try {
-    const updated = await Order.update(request.body, {
-      where: { id }
+    const [numUpdated, updatedRows] = await Order.update(request.body, {
+      where: { id },
+      returning: true
     });
-    if (updated[0]) {
-      response.status(200).json(updated[1][0]);
+    if (numUpdated) {
+      response.status(200).json(updatedRows[0]);
     } else {
       const error = new Error(`No order with the ID ${id}`);
       error.status = 400;

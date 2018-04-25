@@ -13,6 +13,7 @@ import StoreToolbar from './StoreToolbar';
 import Cart from './Cart';
 import Checkout from './Checkout';
 import ReviewProduct from './ReviewProduct';
+import ProductEdit from './ProductEdit';
 
 const Routes = () => (
   <div>
@@ -24,7 +25,12 @@ const Routes = () => (
       <AuthRoute path="/account" component={Account} />
       <Route exact path="/products" component={Products} />
       <Route exact path="/products/:id" component={ProductView} />
-      <AuthRoute exact path="/products/:id/add-review" component={ReviewProduct} />
+      <AdminRoute exact path="/products/:id/edit" component={ProductEdit} />
+      <AuthRoute
+        exact
+        path="/products/:id/add-review"
+        component={ReviewProduct}
+      />
       <Route exact path="/cart" component={Cart} />
       <Route exact path="/checkout" component={Checkout} />
       <AdminRoute path="/admin" component={AdminDashboard} />
